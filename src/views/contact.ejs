@@ -9,5 +9,34 @@
 <body>
     <%-include('partials/navigation') %>
     <h1>Contact</h1>
+    <div class="table-wrapper" ></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>District</th>
+                <th>Business Name</th>
+                <th id="hide-me">State</th>
+                <th id="hide-me">City</th>
+                <th>Population</th>
+                <th>Stratum</th>
+                <th>Samples</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr><% nxB.forEach(function (dato) { %>
+                <td><%= dato.Co %></td>
+                <td><%= dato.Dis %></td>
+                <td><%= dato.Bs %></td>
+                <td id="hide-me"><%= dato.St %></td>
+                <td id="hide-me"><%= dato.Ct %></td>
+                <td><%= dato.Po %></td>
+                <td><%= dato.hs %></td>
+                <td><%= dato.nhxB %></td>
+            </tr><% })%>
+        </tbody>
+    </table>
+</div>  
+    <%-include('partials/footer') %>
 </body>
 </html>

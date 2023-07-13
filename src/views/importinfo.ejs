@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic information</title>
+    <%-include('partials/head') %>
+</head>
+<body>
+    <%-include('partials/navigation') %>
+    <h1>Sube un archivo</h1>
+    <form action="/file" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar" class="agregar">
+        <input type="submit" name="enviar" class="crear-grafico">
+    </form>
+    <div class="table-wrapper" ></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>District</th>
+                    <th>Business Name</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Population</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr><% datos.forEach(function (dato) { %>
+                    <td><%= dato.CODE %></td>
+                    <td><%= dato.DISTRICT %></td>
+                    <td><%= dato.BUSINESS_NAME %></td>
+                    <td><%= dato.STATE %></td>
+                    <td><%= dato.CITY %></td>
+                    <td><%= dato.POPULATION %></td>
+                </tr><% })%>
+            </tbody>
+        </table>
+    </div>  
+    <%-include('partials/footer') %>
+</body>
+</html>

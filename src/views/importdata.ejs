@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical summary</title>
+    <%-include('partials/head') , {variant:'compact'} %>
+</head>
+<body>
+    <%-include('partials/navigation') %>
+    <div class="table-wrapper" ></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>h</th>
+                    <th>N</th>
+                    <th>nh</th>
+                    <th>B</th>
+                    <th>*</th>
+                    <th>**</th>
+                    <th>nh</th>
+                    <th>Wh</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr><% nhT.forEach(function (dato) { %>
+                    <td><%= dato.h %></td>
+                    <td><%= dato.n %></td>
+                    <td><%= dato.Po %></td>
+                    <td><%= dato.Bn %></td>
+                    <td><%= dato.Pa %></td>
+                    <td><%= dato.EPTa %></td>
+                    <td><%= dato.nh %></td>
+                    <td><%= dato.Wh %></td>
+                </tr><% })%>
+            </tbody>
+        </table>
+    </div>  
+    
+
+    <%-include('partials/footer') %>
+</body>
+</html>

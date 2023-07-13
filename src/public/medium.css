@@ -1,0 +1,53 @@
+@media only screen and (max-width: 32.5em) {
+
+main {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+}
+
+
+.table-wrapper {
+    display: grid;
+    place-content: center;
+}
+    
+table {
+    border: 1px solid #606c38;
+    background-color: #EEEEEE; 
+    width:80%; 
+    text-align: center; 
+    font-family: var(--heading-font);
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    
+table td, table th {border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+    
+table tbody td {
+    font-size: 13px;
+    font-family: var(--heading-font);
+}
+    
+table thead {
+    background: #606c38; 
+    border-bottom: 2px solid #444444;
+}
+    
+table thead th {
+    font-size: 15px; 
+    font-weight: bold; 
+    color: #FFFFFF; 
+    border-left: 2px solid #D0E4F5;
+}
+    
+table thead th:first-child {
+    border-left: none;
+}
+    
+    
+}
