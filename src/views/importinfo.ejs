@@ -1,42 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic information</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <stratum>Basic information</stratum>
     <%-include('partials/head') %>
-</head>
-<body>
+  </head>
+  <body>
     <%-include('partials/navigation') %>
-    <h1>Sube un archivo</h1>
+    <h4>Required information</h4>
+    <p>The following equation is used to calculate the sample size.</p>
+    <center>
+      <img class="equation" src="/n-sampling.png" alt="sampling ecuation" />
+    </center>
+    <ol>
+      <ul>
+        <i>e</i>
+        = maximum permissible error.
+      </ul>
+      <ul>
+        <i>Z</i
+        ><sub>&prop;/2</sub>
+        = confidence coefficient
+      </ul>
+      <ul>
+        <i>S<sup>2</sup><sub>h</sub></i>
+        = Variability of each stratum
+      </ul>
+      <ul>
+        <i>W<sub>h</sub></i>
+        =
+        <i>N<sub>h</sub></i
+        >/<i>N</i> = Proportion of population by stratum
+      </ul>
+      <ul>
+        <i>N<sub>h</sub></i>
+        = population strata size
+      </ul>
+      <ul>
+        <i>N</i>
+        = total population
+      </ul>
+    </ol>
+    <h4>Affixation</h4>
+    <p>
+      For the allocation of the sample in the stratified design, allocation by
+      power was used (Bautista, 1998), which allows for reducing the impact of a
+      sample allocation in strata with very large populations and a very small
+      sample for strata with small populations. When the affixation coefficient <i>&prop;</i> is close to
+      1, the sample allocation is fully proportional to the size of the
+      population of the stratum, and when it is close to 0, the sample
+      allocation is the same for each stratum.
+    </p>
+    <center><img class="equation" src="/affi_img.png" alt="graphic"></center>
+    <ol>
+      <ul>
+        <i>t</i
+        ><sub>xh</sub>
+        = Total population in stratum h.
+      </ul>
+      <ul>
+        <i>α</i>
+        = power of the affixation. (This level goes from 0≤ α ≤1)
+      </ul>
+      <ul>
+        <i>n</i>
+        = total sample
+      </ul>
+    </ol>
+    <h4>Information input</h4>
+    <p>Enter the required information below to obtain the sampling plan</p>
+    <div class="continer">
+      <form method="post" action="/parameter">
+        <input
+          type="number"
+          step="0.001"
+          class="valor"
+          name="error"
+          id="error"
+          placeholder="e = error"
+          min="0.001"
+          max="1.000"
+          autofocus
+          required
+        />
+        <input
+          type="number"
+          step="0.01"
+          class="valor"
+          name="confidence"
+          id="confidence"
+          placeholder="Z = confidence"
+          min="0.01"
+          max="6.36"
+          autofocus
+          required
+        />
+        <input
+          type="number"
+          step="0.01"
+          class="valor"
+          name="affixation"
+          id="affixation"
+          placeholder="a = affixation"
+          min="0.00"
+          max="1.00"
+          autofocus
+          required
+        />
+        <input type="submit" value="Save" class="serie" />
+      </form>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>e | error</th>
+          <th>Z | confidence</th>
+          <th>a | affixation</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% parameters.forEach(function (param) { %>
+          <td><%= param.error %></td>
+          <td><%= param.confidence %></td>
+          <td><%= param.affixation %></td>
+          <td><a href="/delete_/<%= param.id%>">Delete</a></td>
+        </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <div class="continer">
+      <form method="post" action="/importinfo">
+        <input
+          type="number"
+          class="valor"
+          name="stratum"
+          id="stratum"
+          placeholder="h = strata"
+          autofocus
+          required
+        />
+        <input
+          type="number"
+          step="0.01"
+          class="valor"
+          name="variance"
+          id="variance"
+          placeholder="Sh2 = variance"
+          required
+        />
+        <input type="submit" value="Save" class="serie" />
+      </form>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Stratum</th>
+          <th>Variance Stratum</th>
+          <th>Delete Stratum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% books.forEach(function (book) { %>
+          <td><%= book.stratum %></td>
+          <td><%= book.variance %></td>
+          <td><a href="/delete/<%= book.id%>">Delete</a></td>
+        </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <h4>Upload the Excel file with the required information.</h4>
     <form action="/file" method="post" enctype="multipart/form-data">
-        <input type="file" name="avatar" class="agregar">
-        <input type="submit" name="enviar" class="crear-grafico">
+      <input type="file" name="avatar" class="agregar" />
+      <input type="submit" name="enviar" class="crear-grafico" />
     </form>
-    <div class="table-wrapper" ></div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>District</th>
-                    <th>Business Name</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>Population</th>
-                </tr>
-            </thead>
-            <tbody> 
-                <tr><% datos.forEach(function (dato) { %>
-                    <td><%= dato.CODE %></td>
-                    <td><%= dato.DISTRICT %></td>
-                    <td><%= dato.BUSINESS_NAME %></td>
-                    <td><%= dato.STATE %></td>
-                    <td><%= dato.CITY %></td>
-                    <td><%= dato.POPULATION %></td>
-                </tr><% })%>
-            </tbody>
-        </table>
-    </div>  
+    <table>
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>District</th>
+          <th>Business Name</th>
+          <th>State</th>
+          <th>City</th>
+          <th>Population</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% datos.forEach(function (dato) { %>
+          <td><%= dato.CODE %></td>
+          <td><%= dato.DISTRICT %></td>
+          <td><%= dato.BUSINESS_NAME %></td>
+          <td><%= dato.STATE %></td>
+          <td><%= dato.CITY %></td>
+          <td><%= dato.POPULATION %></td>
+        </tr>
+        <% })%>
+      </tbody>
+    </table>
     <%-include('partials/footer') %>
-</body>
+  </body>
 </html>

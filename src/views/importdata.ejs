@@ -8,16 +8,21 @@
 </head>
 <body>
     <%-include('partials/navigation') %>
+    <h4><i>W<sub>h</sub></i>
+        = <i>N<sub>h</sub></i
+        >/<i>N</i> = Proportion of population by stratum</h4>
+    <center><img src="/graphic_1.png" alt="graphic"></center>
+    <h4>Summary of statistical calculations</h4>
     <div class="table-wrapper" ></div>
         <table>
             <thead>
                 <tr>
                     <th>h</th>
-                    <th>N</th>
-                    <th>nh</th>
+                    <th>n</th>
+                    <th>Nh</th>
                     <th>B</th>
-                    <th>*</th>
-                    <th>**</th>
+                    <th>t<i><sup>&prop;</sup><sub>xh</sub></i></th>
+                    <th>&sum;t<i><sup>&prop;</sup><sub>xh</sub></i></th>
                     <th>nh</th>
                     <th>Wh</th>
                 </tr>
@@ -36,8 +41,6 @@
             </tbody>
         </table>
     </div>  
-    
-
     <%-include('partials/footer') %>
 </body>
 </html>
